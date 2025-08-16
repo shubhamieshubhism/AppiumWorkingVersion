@@ -1,9 +1,11 @@
 package shubhamTest;
 
+import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
+import org.openqa.selenium.remote.RemoteWebElement;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
@@ -45,6 +47,13 @@ public class BaseTest {
 
         driver = new AndroidDriver(appiumServerURL, options);
         //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+    }
+
+    public void longPressAction(RemoteWebElement element){
+        driver.executeScript("mobile: longClickGesture", ImmutableMap.of(
+                "elementId", element.getId(),
+                "duration", 800   // duration in ms
+        ));
     }
 
     @AfterClass
