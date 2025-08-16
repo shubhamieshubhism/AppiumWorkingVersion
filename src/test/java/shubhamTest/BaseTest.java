@@ -1,6 +1,7 @@
 package shubhamTest;
 
 import com.google.common.collect.ImmutableMap;
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
@@ -54,6 +55,12 @@ public class BaseTest {
                 "elementId", element.getId(),
                 "duration", 800   // duration in ms
         ));
+    }
+
+    public void scrollUsingUiAutomatior(String textToBeScrolled){
+
+        driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\""+textToBeScrolled+"\"));"));
+
     }
 
     @AfterClass

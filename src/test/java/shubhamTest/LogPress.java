@@ -12,6 +12,11 @@ public class LogPress extends BaseTest{
         driver.findElement(AppiumBy.accessibilityId("Expandable Lists")).click();
         driver.findElement(AppiumBy.accessibilityId("1. Custom Adapter")).click();
         RemoteWebElement longPress = (RemoteWebElement) driver.findElement(AppiumBy.xpath("//android.widget.TextView[@text='People Names']"));
+        /*driver.executeScript("mobile: longClickGesture", ImmutableMap.of(
+                "elementId", longPress.getId(),
+                "duration", 800   // duration in ms
+        ));*/
+        //above lines of code is now converted into below method
         longPressAction(longPress);
         String text = driver.findElement(AppiumBy.id("android:id/title")).getText();
         Assert.assertEquals(text,"Sample menu");
