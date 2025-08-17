@@ -6,6 +6,8 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebElement;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -50,9 +52,9 @@ public class BaseTest {
         //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
 
-    public void longPressAction(RemoteWebElement element){
+    public void longPressAction(WebElement element){
         driver.executeScript("mobile: longClickGesture", ImmutableMap.of(
-                "elementId", element.getId(),
+                "elementId", ((RemoteWebElement)element).getId(),
                 "duration", 800   // duration in ms
         ));
     }
@@ -61,6 +63,28 @@ public class BaseTest {
 
         driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\""+textToBeScrolled+"\"));"));
 
+    }
+
+    public void scrollToEnd(String direction){
+        boolean canScrollMore;
+        do{
+            canScrollMore = (Boolean)((JavascriptExecutor)driver).executeScript("mobile: scrollGesture", ImmutableMap.of(
+                    "left",100,
+                    "top",100,
+                    "width",200,
+                    "height",200,
+                    "direction",""+direction+"",
+                    "percent",3.0
+            ));
+        }while(canScrollMore);
+    }
+
+    public void swipeAction(WebElement ele,String direction){
+        driver.executeScript("mobile: swipeGesture", ImmutableMap.of(
+                "elementId",((RemoteWebElement)ele).getId(),
+                "direction",""+direction+"",
+                "percent",0.25
+        ));
     }
 
     @AfterClass
