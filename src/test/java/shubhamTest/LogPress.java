@@ -20,8 +20,8 @@ public class LogPress extends BaseTest{
         longPressAction(longPress);
         String text = driver.findElement(AppiumBy.id("android:id/title")).getText();
         Assert.assertEquals(text,"Sample menu");
-        boolean textIsdisplayed = driver.findElement(AppiumBy.id("android:id/title")).isDisplayed();
-        Assert.assertTrue(textIsdisplayed,"Text needs to be displayed");
+        boolean textisdisplayed = driver.findElement(AppiumBy.id("android:id/title")).isDisplayed();
+        Assert.assertTrue(textisdisplayed,"Text needs to be displayed");
 
 
     }
