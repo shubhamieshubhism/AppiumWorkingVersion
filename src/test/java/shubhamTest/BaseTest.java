@@ -59,7 +59,7 @@ public class BaseTest {
         ));
     }
 
-    public void scrollUsingUiAutomatior(String textToBeScrolled){
+    public void scrollUsingUiAutomator(String textToBeScrolled){
 
         driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\""+textToBeScrolled+"\"));"));
 
@@ -73,7 +73,7 @@ public class BaseTest {
                     "top",100,
                     "width",200,
                     "height",200,
-                    "direction",""+direction+"",
+                    "direction",direction,
                     "percent",3.0
             ));
         }while(canScrollMore);
@@ -82,7 +82,7 @@ public class BaseTest {
     public void swipeAction(WebElement ele,String direction){
         driver.executeScript("mobile: swipeGesture", ImmutableMap.of(
                 "elementId",((RemoteWebElement)ele).getId(),
-                "direction",""+direction+"",
+                "direction",direction,
                 "percent",0.25
         ));
     }

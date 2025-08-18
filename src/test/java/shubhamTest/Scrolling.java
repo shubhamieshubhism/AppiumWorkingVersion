@@ -10,7 +10,7 @@ public class Scrolling extends BaseTest{
 
         //driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector()).scrollIntoView(text(\""+textToBeScrolled+"\"));"));
         //above line of code is now converted into a below method
-        scrollUsingUiAutomatior("WebView");
+        scrollUsingUiAutomator("WebView");
 
     }
 
